@@ -1,0 +1,66 @@
+LAPORAN EXPLORATORY DATA ANALYSIS
+NYC AIRBNB OPEN DATA
+======================================================================
+
+1. DATA UNDERSTANDING
+----------------------------------------------------------------------
+Jumlah baris : 48,895
+Jumlah kolom : 16
+
+Kolom dataset:
+- id: ID unik untuk setiap listing Airbnb.
+- name: Nama atau judul listing Airbnb.
+- host_id: ID unik pemilik/host.
+- host_name: Nama host.
+- neighbourhood_group: Kelompok wilayah/bagian kota tempat listing berada.
+- neighbourhood: Nama lingkungan tempat listing berada.
+- latitude: Koordinat lintang lokasi listing.
+- longitude: Koordinat bujur lokasi listing.
+- room_type: Jenis tempat yang disewakan.
+- price: Harga sewa per malam dalam USD.
+- minimum_nights: Jumlah minimum malam yang harus dipesan.
+- number_of_reviews: Jumlah review yang diterima listing.
+- last_review: Tanggal review terakhir.
+- reviews_per_month: Rata-rata jumlah review per bulan.
+- calculated_host_listings_count: Jumlah listing yang dimiliki host.
+- availability_365: Jumlah hari dalam satu tahun ketika listing tersedia.
+
+
+2. DATA QUALITY
+----------------------------------------------------------------------
+Total missing value : 20,141
+Total duplicate     : 0
+Harga negatif       : 0
+Minimum nights <= 0 : 0
+Latitude invalid     : 0
+Longitude invalid    : 0
+Availability invalid : 0
+
+
+3. EDA
+----------------------------------------------------------------------
+Rata-rata harga : $152.72
+Median harga    : $106.00
+Rata-rata minimum nights : 7.03
+Median minimum nights : 3.00
+Room type terbanyak : Entire home/apt
+Neighbourhood group terbanyak : Manhattan
+Korelasi terbesar : number_of_reviews dengan reviews_per_month = 0.550
+
+
+4. ANOMALY DETECTION
+----------------------------------------------------------------------
+Outlier harga : 2,972
+Minimum nights ekstrem : 6,607
+Harga > $1,000 : 239
+Availability invalid : 0
+
+
+5. REKOMENDASI
+----------------------------------------------------------------------
+1. Missing value perlu ditangani sebelum analisis lanjutan.
+2. Outlier harga perlu diperiksa sebelum pemodelan.
+3. Minimum nights ekstrem perlu diperiksa.
+4. Harga ekstrem tidak otomatis berarti data salah.
+5. Variabel kategori dapat digunakan untuk analisis perbandingan.
+6. Korelasi dapat digunakan sebagai dasar analisis lanjutan.

@@ -1,0 +1,449 @@
+======================================================================
+NYC AIRBNB OPEN DATA - EXPLORATORY DATA ANALYSIS
+======================================================================
+
+Dataset berhasil dibaca.
+Nama file      : AB_NYC_2019 - Asli.csv
+Jumlah baris   : 48,895
+Jumlah kolom   : 16
+
+
+======================================================================
+1. DATA UNDERSTANDING
+======================================================================
+
+1.1 JUMLAH BARIS DAN KOLOM
+----------------------------------------------------------------------
+Jumlah baris  : 48,895
+Jumlah kolom  : 16
+
+1.2 LIMA DATA PERTAMA
+----------------------------------------------------------------------
+     id                                              name  host_id    host_name neighbourhood_group neighbourhood  \
+0  2539                Clean & quiet apt home by the park     2787         John            Brooklyn    Kensington   
+1  2595                             Skylit Midtown Castle     2845     Jennifer           Manhattan       Midtown   
+2  3647               THE VILLAGE OF HARLEM....NEW YORK !     4632    Elisabeth           Manhattan        Harlem   
+3  3831                   Cozy Entire Floor of Brownstone     4869  LisaRoxanne            Brooklyn  Clinton Hill   
+4  5022  Entire Apt: Spacious Studio/Loft by central park     7192        Laura           Manhattan   East Harlem   
+
+   latitude  longitude        room_type  price  minimum_nights  number_of_reviews last_review  reviews_per_month  \
+0  40.64749  -73.97237     Private room    149               1                  9  2018-10-19               0.21   
+1  40.75362  -73.98377  Entire home/apt    225               1                 45  2019-05-21               0.38   
+2  40.80902  -73.94190     Private room    150               3                  0         NaN                NaN   
+3  40.68514  -73.95976  Entire home/apt     89               1                270  2019-07-05               4.64   
+4  40.79851  -73.94399  Entire home/apt     80              10                  9  2018-11-19               0.10   
+
+   calculated_host_listings_count  availability_365  
+0                               6               365  
+1                               2               355  
+2                               1               365  
+3                               1               194  
+4                               1                 0  
+
+1.3 LIMA DATA TERAKHIR
+----------------------------------------------------------------------
+             id                                               name   host_id      host_name neighbourhood_group  \
+48890  36484665    Charming one bedroom - newly renovated rowhouse   8232441        Sabrina            Brooklyn   
+48891  36485057      Affordable room in Bushwick/East Williamsburg   6570630        Marisol            Brooklyn   
+48892  36485431            Sunny Studio at Historical Neighborhood  23492952  Ilgar & Aysel           Manhattan   
+48893  36485609               43rd St. Time Square-cozy single bed  30985759            Taz           Manhattan   
+48894  36487245  Trendy duplex in the very heart of Hell's Kitchen  68119814     Christophe           Manhattan   
+
+            neighbourhood  latitude  longitude        room_type  price  minimum_nights  number_of_reviews last_review  \
+48890  Bedford-Stuyvesant  40.67853  -73.94995     Private room     70               2                  0         NaN   
+48891            Bushwick  40.70184  -73.93317     Private room     40               4                  0         NaN   
+48892              Harlem  40.81475  -73.94867  Entire home/apt    115              10                  0         NaN   
+48893      Hell's Kitchen  40.75751  -73.99112      Shared room     55               1                  0         NaN   
+48894      Hell's Kitchen  40.76404  -73.98933     Private room     90               7                  0         NaN   
+
+       reviews_per_month  calculated_host_listings_count  availability_365  
+48890                NaN                               2                 9  
+48891                NaN                               2                36  
+48892                NaN                               1                27  
+48893                NaN                               6                 2  
+48894                NaN                               1                23  
+
+1.4 INFORMASI DATASET
+----------------------------------------------------------------------
+<class 'pandas.DataFrame'>
+RangeIndex: 48895 entries, 0 to 48894
+Data columns (total 16 columns):
+ #   Column                          Non-Null Count  Dtype  
+---  ------                          --------------  -----  
+ 0   id                              48895 non-null  int64  
+ 1   name                            48879 non-null  str    
+ 2   host_id                         48895 non-null  int64  
+ 3   host_name                       48874 non-null  str    
+ 4   neighbourhood_group             48895 non-null  str    
+ 5   neighbourhood                   48895 non-null  str    
+ 6   latitude                        48895 non-null  float64
+ 7   longitude                       48895 non-null  float64
+ 8   room_type                       48895 non-null  str    
+ 9   price                           48895 non-null  int64  
+ 10  minimum_nights                  48895 non-null  int64  
+ 11  number_of_reviews               48895 non-null  int64  
+ 12  last_review                     38843 non-null  str    
+ 13  reviews_per_month               38843 non-null  float64
+ 14  calculated_host_listings_count  48895 non-null  int64  
+ 15  availability_365                48895 non-null  int64  
+dtypes: float64(3), int64(7), str(6)
+memory usage: 6.0 MB
+None
+
+1.5 TIPE DATA SETIAP VARIABEL
+----------------------------------------------------------------------
+                         Kolom Tipe Data  Jumlah Nilai  Missing
+                            id     int64         48895        0
+                          name       str         48879       16
+                       host_id     int64         48895        0
+                     host_name       str         48874       21
+           neighbourhood_group       str         48895        0
+                 neighbourhood       str         48895        0
+                      latitude   float64         48895        0
+                     longitude   float64         48895        0
+                     room_type       str         48895        0
+                         price     int64         48895        0
+                minimum_nights     int64         48895        0
+             number_of_reviews     int64         48895        0
+                   last_review       str         38843    10052
+             reviews_per_month   float64         38843    10052
+calculated_host_listings_count     int64         48895        0
+              availability_365     int64         48895        0
+
+1.6 DESKRIPSI VARIABEL
+----------------------------------------------------------------------
+id                                  : ID unik untuk setiap listing Airbnb.
+name                                : Nama atau judul listing Airbnb.
+host_id                             : ID unik pemilik/host.
+host_name                           : Nama host.
+neighbourhood_group                 : Kelompok wilayah/bagian kota tempat listing berada.
+neighbourhood                       : Nama lingkungan tempat listing berada.
+latitude                            : Koordinat lintang lokasi listing.
+longitude                           : Koordinat bujur lokasi listing.
+room_type                           : Jenis tempat yang disewakan.
+price                               : Harga sewa per malam dalam USD.
+minimum_nights                      : Jumlah minimum malam yang harus dipesan.
+number_of_reviews                   : Jumlah review yang diterima listing.
+last_review                         : Tanggal review terakhir.
+reviews_per_month                   : Rata-rata jumlah review per bulan.
+calculated_host_listings_count      : Jumlah listing yang dimiliki host.
+availability_365                    : Jumlah hari dalam satu tahun ketika listing tersedia.
+
+
+======================================================================
+2. DATA QUALITY
+======================================================================
+
+2.1 MISSING VALUE
+----------------------------------------------------------------------
+                         Kolom  Missing  Persentase (%)
+                   last_review    10052           20.56
+             reviews_per_month    10052           20.56
+                     host_name       21            0.04
+                          name       16            0.03
+           neighbourhood_group        0            0.00
+                 neighbourhood        0            0.00
+                            id        0            0.00
+                       host_id        0            0.00
+                     longitude        0            0.00
+                      latitude        0            0.00
+                     room_type        0            0.00
+                         price        0            0.00
+             number_of_reviews        0            0.00
+                minimum_nights        0            0.00
+calculated_host_listings_count        0            0.00
+              availability_365        0            0.00
+
+Total missing value : 20,141
+
+2.2 DUPLICATE
+----------------------------------------------------------------------
+Jumlah data duplikat : 0
+Tidak ditemukan data duplikat.
+
+2.3 INVALID VALUE
+----------------------------------------------------------------------
+Harga negatif                    : 0
+Minimum nights <= 0              : 0
+Latitude di luar 40-41           : 0
+Longitude di luar -75 sampai -73 : 0
+Availability di luar 0-365       : 0
+Jumlah review negatif             : 0
+Review per bulan negatif          : 0
+
+2.4 DATA TYPE
+----------------------------------------------------------------------
+id                                  int64
+name                                  str
+host_id                             int64
+host_name                             str
+neighbourhood_group                   str
+neighbourhood                         str
+latitude                          float64
+longitude                         float64
+room_type                             str
+price                               int64
+minimum_nights                      int64
+number_of_reviews                   int64
+last_review                           str
+reviews_per_month                 float64
+calculated_host_listings_count      int64
+availability_365                    int64
+dtype: object
+
+Konversi kolom 'last_review' menjadi datetime...
+Tipe data last_review setelah konversi: datetime64[us]
+
+
+======================================================================
+3. EXPLORATORY DATA ANALYSIS (EDA)
+======================================================================
+
+3.1 STATISTIK DESKRIPTIF
+----------------------------------------------------------------------
+                                  count        mean         std       min       25%        50%         75%  \
+latitude                        48895.0   40.728949    0.054530  40.49979  40.69010   40.72307   40.763115   
+longitude                       48895.0  -73.952170    0.046157 -74.24442 -73.98307  -73.95568  -73.936275   
+price                           48895.0  152.720687  240.154170   0.00000  69.00000  106.00000  175.000000   
+minimum_nights                  48895.0    7.029962   20.510550   1.00000   1.00000    3.00000    5.000000   
+number_of_reviews               48895.0   23.274466   44.550582   0.00000   1.00000    5.00000   24.000000   
+reviews_per_month               38843.0    1.373221    1.680442   0.01000   0.19000    0.72000    2.020000   
+calculated_host_listings_count  48895.0    7.143982   32.952519   1.00000   1.00000    1.00000    2.000000   
+availability_365                48895.0  112.781327  131.622289   0.00000   0.00000   45.00000  227.000000   
+
+                                        max     median  
+latitude                           40.91306   40.72307  
+longitude                         -73.71299  -73.95568  
+price                           10000.00000  106.00000  
+minimum_nights                   1250.00000    3.00000  
+number_of_reviews                 629.00000    5.00000  
+reviews_per_month                  58.50000    0.72000  
+calculated_host_listings_count    327.00000    1.00000  
+availability_365                  365.00000   45.00000  
+
+3.2 MEMBUAT HISTOGRAM PRICE...
+3.3 MEMBUAT HISTOGRAM MINIMUM NIGHTS...
+3.4 MEMBUAT BAR CHART NEIGHBOURHOOD GROUP...
+
+Jumlah listing berdasarkan neighbourhood group:
+neighbourhood_group
+Manhattan        21661
+Brooklyn         20104
+Queens            5666
+Bronx             1091
+Staten Island      373
+Name: count, dtype: int64
+
+3.5 MEMBUAT BAR CHART ROOM TYPE...
+
+Jumlah listing berdasarkan room type:
+room_type
+Entire home/apt    25409
+Private room       22326
+Shared room         1160
+Name: count, dtype: int64
+
+3.6 MEMBUAT BOXPLOT PRICE...
+3.7 MEMBUAT BOXPLOT MINIMUM NIGHTS...
+
+3.8 MEMBUAT SCATTER PLOT PRICE VS NUMBER OF REVIEWS...
+3.9 MEMBUAT SCATTER PLOT PRICE VS MINIMUM NIGHTS...
+
+3.10 MEMBUAT CORRELATION HEATMAP...
+
+Matriks korelasi:
+                                latitude  longitude  price  minimum_nights  number_of_reviews  reviews_per_month  \
+latitude                           1.000      0.085  0.034           0.025             -0.015             -0.010   
+longitude                          0.085      1.000 -0.150          -0.063              0.059              0.146   
+price                              0.034     -0.150  1.000           0.043             -0.048             -0.031   
+minimum_nights                     0.025     -0.063  0.043           1.000             -0.080             -0.122   
+number_of_reviews                 -0.015      0.059 -0.048          -0.080              1.000              0.550   
+reviews_per_month                 -0.010      0.146 -0.031          -0.122              0.550              1.000   
+calculated_host_listings_count     0.020     -0.115  0.057           0.128             -0.072             -0.009   
+availability_365                  -0.011      0.083  0.082           0.144              0.172              0.186   
+
+                                calculated_host_listings_count  availability_365  
+latitude                                                 0.020            -0.011  
+longitude                                               -0.115             0.083  
+price                                                    0.057             0.082  
+minimum_nights                                           0.128             0.144  
+number_of_reviews                                       -0.072             0.172  
+reviews_per_month                                       -0.009             0.186  
+calculated_host_listings_count                           1.000             0.226  
+availability_365                                         0.226             1.000  
+
+
+======================================================================
+4. ANOMALY DETECTION
+======================================================================
+
+4.1 OUTLIER HARGA
+----------------------------------------------------------------------
+Q1 harga       : $69.00
+Q3 harga       : $175.00
+IQR            : $106.00
+Batas bawah    : $-90.00
+Batas atas     : $334.00
+
+Jumlah outlier harga : 2,972
+
+Contoh outlier harga:
+             id                                               name neighbourhood_group      neighbourhood  \
+17692  13894339    Luxury 1 bedroom apt. -stunning Manhattan views            Brooklyn         Greenpoint   
+29238  22436899                                1-BR Lincoln Center           Manhattan    Upper West Side   
+9151    7003697                Furnished room in Astoria apartment              Queens            Astoria   
+40433  31340283  2br - The Heart of NYC: Manhattans Lower East ...           Manhattan    Lower East Side   
+6530    4737930                                 Spanish Harlem Apt           Manhattan        East Harlem   
+12342   9528920                Quiet, Clean, Lit @ LES & Chinatown           Manhattan    Lower East Side   
+30268  23377410  Beautiful/Spacious 1 bed luxury flat-TriBeCa/Soho           Manhattan            Tribeca   
+4377    2953058                                      Film Location            Brooklyn       Clinton Hill   
+29662  22779726          East 72nd Townhouse by (Hidden by Airbnb)           Manhattan    Upper East Side   
+42523  33007610                70' Luxury MotorYacht on the Hudson           Manhattan  Battery Park City   
+
+             room_type  price  
+17692  Entire home/apt  10000  
+29238  Entire home/apt  10000  
+9151      Private room  10000  
+40433  Entire home/apt   9999  
+6530   Entire home/apt   9999  
+12342     Private room   9999  
+30268  Entire home/apt   8500  
+4377   Entire home/apt   8000  
+29662  Entire home/apt   7703  
+42523  Entire home/apt   7500  
+
+4.2 MINIMUM NIGHTS EKSTREM
+----------------------------------------------------------------------
+Q1 minimum nights       : 1.00
+Q3 minimum nights       : 5.00
+IQR                     : 4.00
+Batas bawah             : -5.00
+Batas atas              : 11.00
+
+Jumlah minimum nights ekstrem : 6,607
+
+Contoh minimum nights ekstrem:
+             id                                 name neighbourhood_group        room_type  minimum_nights  price
+5767    4204302     Prime W. Village location 1 bdrm           Manhattan  Entire home/apt            1250    180
+2854    1615764                                  NaN           Manhattan  Entire home/apt            1000    400
+26341  20990053      Beautiful place in Brooklyn! #2            Brooklyn     Private room             999     79
+13404  10053943   Historic Designer 2 Bed. Apartment           Manhattan  Entire home/apt             999     99
+38664  30378211         Shared Studio (females only)           Manhattan      Shared room             999    110
+47620  35834935               Williamsburg Apartment            Brooklyn  Entire home/apt             500    140
+8014    6169897            Wonderful Large 1 bedroom           Manhattan  Entire home/apt             500     75
+7355    5431845  Beautiful Fully Furnished 1 bed/bth              Queens  Entire home/apt             500    134
+14285  11096888      Peaceful apartment close to F/G            Brooklyn     Private room             500     45
+11193   8668115   Zen Room in Crown Heights Brooklyn            Brooklyn     Private room             500     50
+
+4.3 HARGA TIDAK WAJAR
+----------------------------------------------------------------------
+Listing dengan harga = $0       : 11
+Listing dengan harga negatif    : 0
+Listing dengan harga > $1,000   : 239
+
+Contoh listing dengan harga > $1,000:
+             id                                               name neighbourhood_group    neighbourhood  \
+9151    7003697                Furnished room in Astoria apartment              Queens          Astoria   
+17692  13894339    Luxury 1 bedroom apt. -stunning Manhattan views            Brooklyn       Greenpoint   
+29238  22436899                                1-BR Lincoln Center           Manhattan  Upper West Side   
+12342   9528920                Quiet, Clean, Lit @ LES & Chinatown           Manhattan  Lower East Side   
+6530    4737930                                 Spanish Harlem Apt           Manhattan      East Harlem   
+40433  31340283  2br - The Heart of NYC: Manhattans Lower East ...           Manhattan  Lower East Side   
+30268  23377410  Beautiful/Spacious 1 bed luxury flat-TriBeCa/Soho           Manhattan          Tribeca   
+4377    2953058                                      Film Location            Brooklyn     Clinton Hill   
+29662  22779726          East 72nd Townhouse by (Hidden by Airbnb)           Manhattan  Upper East Side   
+45666  34895693                               Gem of east Flatbush            Brooklyn    East Flatbush   
+
+             room_type  price  
+9151      Private room  10000  
+17692  Entire home/apt  10000  
+29238  Entire home/apt  10000  
+12342     Private room   9999  
+6530   Entire home/apt   9999  
+40433  Entire home/apt   9999  
+30268  Entire home/apt   8500  
+4377   Entire home/apt   8000  
+29662  Entire home/apt   7703  
+45666     Private room   7500  
+
+4.4 MISSING VALUE
+----------------------------------------------------------------------
+Kolom yang memiliki missing value:
+            Kolom  Missing  Persentase (%)
+      last_review    10052           20.56
+reviews_per_month    10052           20.56
+        host_name       21            0.04
+             name       16            0.03
+
+4.5 ANOMALI AVAILABILITY
+----------------------------------------------------------------------
+Jumlah data dengan availability di luar 0-365: 0
+
+4.6 10 HARGA TERTINGGI
+----------------------------------------------------------------------
+      id                                               name neighbourhood_group     neighbourhood       room_type  price  minimum_nights
+22436899                                1-BR Lincoln Center           Manhattan   Upper West Side Entire home/apt  10000              30
+ 7003697                Furnished room in Astoria apartment              Queens           Astoria    Private room  10000             100
+13894339    Luxury 1 bedroom apt. -stunning Manhattan views            Brooklyn        Greenpoint Entire home/apt  10000               5
+ 4737930                                 Spanish Harlem Apt           Manhattan       East Harlem Entire home/apt   9999               5
+31340283 2br - The Heart of NYC: Manhattans Lower East Side           Manhattan   Lower East Side Entire home/apt   9999              30
+ 9528920                Quiet, Clean, Lit @ LES & Chinatown           Manhattan   Lower East Side    Private room   9999              99
+23377410  Beautiful/Spacious 1 bed luxury flat-TriBeCa/Soho           Manhattan           Tribeca Entire home/apt   8500              30
+ 2953058                                      Film Location            Brooklyn      Clinton Hill Entire home/apt   8000               1
+22779726          East 72nd Townhouse by (Hidden by Airbnb)           Manhattan   Upper East Side Entire home/apt   7703               1
+33007610                70' Luxury MotorYacht on the Hudson           Manhattan Battery Park City Entire home/apt   7500               1
+
+
+======================================================================
+5. KESIMPULAN
+======================================================================
+
+5.1 KUALITAS DATASET
+----------------------------------------------------------------------
+Jumlah data              : 48,895
+Jumlah variabel          : 16
+Total missing value      : 20,141
+Total duplicate          : 0
+Harga negatif            : 0
+Minimum nights tidak valid: 0
+
+5.2 POLA YANG DITEMUKAN
+----------------------------------------------------------------------
+Neighbourhood group dengan jumlah listing terbanyak: Manhattan
+Room type yang paling banyak ditemukan: Entire home/apt
+Rata-rata harga per malam: $152.72
+Median harga per malam: $106.00
+Rata-rata minimum nights: 7.03
+Median minimum nights: 3.00
+Korelasi numerik terbesar secara absolut: number_of_reviews dengan reviews_per_month = 0.550
+
+5.3 ANOMALI
+----------------------------------------------------------------------
+Outlier harga berdasarkan metode IQR: 2,972
+Minimum nights ekstrem berdasarkan metode IQR: 6,607
+Harga > $1,000: 239
+Availability di luar 0-365: 0
+
+5.4 REKOMENDASI
+----------------------------------------------------------------------
+1. Missing value perlu ditangani sebelum digunakan untuk pemodelan.
+2. Outlier harga perlu diperiksa sebelum analisis statistik lebih lanjut.
+3. Minimum nights yang sangat tinggi perlu diperiksa karena dapat memengaruhi analisis.
+4. Harga ekstrem tidak langsung dianggap sebagai kesalahan karena bisa saja merupakan listing dengan karakteristik khusus.
+5. Kolom kategori seperti room_type dan neighbourhood_group dapat digunakan untuk analisis perbandingan.
+6. Korelasi antarvariabel numerik dapat digunakan sebagai dasar untuk analisis lanjutan.
+
+
+======================================================================
+MENYIMPAN LAPORAN
+======================================================================
+
+Laporan berhasil disimpan:
+  hasil_eda\laporan_eda.txt
+
+Semua grafik berhasil disimpan di folder:
+  hasil_eda/
+
+======================================================================
+EDA SELESAI
+======================================================================
